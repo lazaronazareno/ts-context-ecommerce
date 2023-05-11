@@ -79,7 +79,7 @@
 
 /*////////////////////// BUTTON /////////////////////// */
 
-.add-to-cart, .remove-from-cart {
+.add-to-cart, .remove-from-cart, .shop-now, .clear-cart {
   width: 9rem;
   font-size: .8rem;
   font-weight: 500;
@@ -102,7 +102,7 @@
   color: black;
 }
 
-.remove-from-cart{
+.remove-from-cart, .shop-now {
   background-color: var(--main-color);
   color: white;
 }
@@ -136,17 +136,21 @@ select {
 
 header {
   position: relative;
+  background-color: #b0ffe5;
+  border-bottom: 1px solid var(--main-color);
+  margin-bottom: 1rem;
 }
 
 .cart {
   background: #545454;
   color: white;
   display: none;
-  padding: 32px;
+  padding: 2rem;
+  padding-top: 4rem;
   position: fixed;
   right: 0px;
   top: 0px;
-  width: 200px;
+  width: 14rem;
   overflow-y: auto;
 }
 
@@ -157,7 +161,7 @@ header {
 
 .cart li {
   border-bottom: 1px solid var(--main-color);
-  padding-bottom: 16px;
+  padding-bottom: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -176,17 +180,17 @@ header {
   align-items: center;
   background: var(--main-color);
   color: white;
-  border-radius: 9999px;
+  border-radius: .5rem;
   cursor: pointer;
   display: flex;
-  height: 32px;
+  height: 48px;
   justify-content: center;
   padding: 4px;
   position: fixed;
   right: 8px;
   top: 8px;
   transition: all .3s ease;
-  width: 32px;
+  width: 48px;
   z-index: 9999;
 }
 
@@ -197,6 +201,27 @@ header {
 .cart-button ~ input:checked ~ .cart {
   height: 100%;
   display: block;
+}
+
+.cart > div {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  align-items: center;
+}
+
+.clear-cart {
+  background-color: red;
+  color: white;
+  padding: .3rem 1rem;
+  transition: .2s ease;
+  display: flex;
+  gap: .5rem;
+}
+
+.clear-cart:hover {
+  scale: .9;
+  border: 1px solid white;
 }
 
 /* ///////// PAGINATION ////////////////// */
@@ -253,10 +278,10 @@ header {
   width: 48px;
   height: 48px;
   margin: 8px;
-  border: 8px solid #fff;
+  border: 8px solid var(--main-color);
   border-radius: 50%;
   animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-  border-color: #fff transparent transparent transparent;
+  border-color: var(--main-color) transparent transparent transparent;
 }
 
 .lds-ring div:nth-child(1) {

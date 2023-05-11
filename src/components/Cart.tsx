@@ -49,16 +49,26 @@ export function Cart() {
           ))}
         </ul>
 
-        <button onClick={clearCart}>
-          <>
-            <ClearCartIcon />
-            <p>Clear Cart</p>
-          </>
-        </button>
+        {
+          cart.length > 0
+            ? (
+              <div>
+                <button className='clear-cart' onClick={clearCart}>
+                  <>
+                    <ClearCartIcon />
+                    <p>Clear Cart</p>
+                  </>
+                </button>
 
-        <div>
-          Total: ${cart.reduce((acc, product) => acc + (product.price * (product.quantity ?? 1)), 0)}
-        </div>
+                <h3>
+                  Total: ${cart.reduce((acc, product) => acc + (product.price * (product.quantity ?? 1)), 0)}
+                </h3>
+
+                <button className='shop-now' onClick={clearCart}>Shop Now</button>
+              </div>)
+            : <p>Cart is empty 😿</p>
+        }
+
       </aside>
     </>
   )

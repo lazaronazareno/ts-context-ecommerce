@@ -84,11 +84,10 @@ export const Products: React.FC<FetchProductsResult> = ({ products, isLoading, e
 
   return (
     <>
-      {isLoading && <LoadingSpinner />}
       {
-        hasMovies
-          ? <ListOfProducts products={products} />
-          : <NoProductsResults />
+        isLoading
+          ? <LoadingSpinner />
+          : (hasMovies ? <ListOfProducts products={products} /> : <NoProductsResults />)
       }
       {(error != null) && <p>{error.message}</p>}
     </>
