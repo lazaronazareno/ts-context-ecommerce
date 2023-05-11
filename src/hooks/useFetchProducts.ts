@@ -9,7 +9,7 @@ export const useFetchProducts = (): FetchProductsResult => {
   const fetchProducts = async () => {
     setIsLoading(true)
     try {
-      const res = await fetch(`https://dummyjson.com/products?limit=20&skip=${actualPage}`)
+      const res = await fetch(`https://dummyjson.com/products?limit=20&skip=${actualPage * 20}`)
       const data = await res.json()
       const newProducts = data.products.map((product: FetchProduct) => ({
         id: product.id,

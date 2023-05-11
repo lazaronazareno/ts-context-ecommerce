@@ -1,8 +1,13 @@
-import { useId } from 'react'
+import { useContext, useEffect, useId } from 'react'
 import { useFilterProducts } from '../hooks/useFilterProducts'
+import { ProductsContext } from '../context/productContext'
 
 export const Filters: React.FC = () => {
   const { filters, setFilters } = useFilterProducts()
+  const { products, actualPage } = useContext(ProductsContext)
+
+  const filterFromProducts = products.map((product: Product) => product.category)
+  const filterFromProductsArray = [...new Set(filterFromProducts)]
 
   const minPriceFilterId = useId()
   const categoryFilterId = useId()
@@ -21,15 +26,23 @@ export const Filters: React.FC = () => {
     }))
   }
 
+  useEffect(() => {
+    setFilters({
+      category: 'all',
+      minPrice: 0
+    })
+  }, [actualPage])
+
   return (
     <section className='filters'>
 
       <div>
-        <label htmlFor={minPriceFilterId}>Precio a partir de:</label>
+        <label htmlFor={minPriceFilterId}>Price from:</label>
         <input
           type='range'
           id={minPriceFilterId}
           min='0'
+          step='10'
           max='1000'
           onChange={handleChangeMinPrice}
           value={filters.minPrice}
@@ -40,9 +53,10 @@ export const Filters: React.FC = () => {
       <div>
         <label htmlFor={categoryFilterId}>Categoría</label>
         <select id={categoryFilterId} onChange={handleChangeCategory}>
-          <option value='all'>Todas</option>
-          <option value='laptops'>Laptops</option>
-          <option value='smartphones'>Smartphones</option>
+          <option value='all'>All</option>
+          {filterFromProductsArray.map((filter: string) => (
+            <option style={{ textTransform: 'capitalize' }} key={filter} value={filter}>{filter}</option>
+          ))}
         </select>
       </div>
 
