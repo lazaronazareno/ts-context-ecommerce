@@ -51,9 +51,8 @@ export const Filters: React.FC = () => {
       </div>
 
       <div>
-        <label htmlFor={categoryFilterId}>Categoría</label>
-        <select id={categoryFilterId} onChange={handleChangeCategory}>
-          <option value='all'>All</option>
+        <select id={categoryFilterId} title='sort by' onChange={handleChangeCategory}>
+          <option value='all'>Sort by</option>
           {filterFromProductsArray.map((filter: string) => (
             <option style={{ textTransform: 'capitalize' }} key={filter} value={filter}>{filter}</option>
           ))}

@@ -17,7 +17,8 @@ export const useFetchProducts = (): FetchProductsResult => {
         price: product.price,
         description: product.description,
         category: product.category,
-        image: product.thumbnail
+        image: product.thumbnail,
+        rating: product.rating
       }))
       setProducts(newProducts)
     } catch (error) {

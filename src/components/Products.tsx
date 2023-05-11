@@ -1,6 +1,6 @@
 import { useCart } from '../hooks/useCart.ts'
 import { useHandlePagination } from '../hooks/useHandlePagination.ts'
-import { AddToCartIcon, RemoveFromCartIcon } from './Icons.tsx'
+import Rating from './Rating.tsx'
 
 interface Props {
   products: Product[]
@@ -24,11 +24,12 @@ const ListOfProducts: React.FC<Props> = ({ products }) => {
             <li className='product-item' key={product.id}>
               <img src={product.image} alt={product.title} />
               <div>
-                <span>{product.title}</span>
-                <p>${product.price}</p>
-              </div>
-              <div>
-                <button>🍳</button>
+                <div className='title'>
+                  <p>{product.title}</p>
+                  <p>${new Intl.NumberFormat('en-DE').format(product.price)}</p>
+                </div>
+                <p className='description'>{product.description}</p>
+                <Rating rating={product.rating} maxStars={5} userReviews={17} />
                 <button
                   className={isProductInCart ? 'remove-from-cart' : 'add-to-cart'}
                   onClick={() => {
@@ -39,8 +40,8 @@ const ListOfProducts: React.FC<Props> = ({ products }) => {
                 >
                   {
                     isProductInCart
-                      ? <RemoveFromCartIcon />
-                      : <AddToCartIcon />
+                      ? <span>Remove from Cart</span>
+                      : <span>Add to Cart</span>
                   }
                 </button>
               </div>
@@ -50,11 +51,11 @@ const ListOfProducts: React.FC<Props> = ({ products }) => {
       </ul>
       <div className='pagination'>
         {actualPage > 0 &&
-          <button onClick={handlePrevPage}>⏪</button>
+          <button onClick={handlePrevPage}>Previous</button>
         }
         <span>{actualPage + 1}</span>
         {actualPage < 4 &&
-          <button onClick={handleNextPage}>⏩</button>
+          <button onClick={handleNextPage}>Next</button>
         }
       </div>
     </>

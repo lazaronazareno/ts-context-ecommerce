@@ -6,6 +6,7 @@ interface Product {
   category: string
   image: string
   quantity?: number
+  rating: number
 }
 
 interface FetchProduct {
@@ -15,6 +16,7 @@ interface FetchProduct {
   price: number
   category: string
   thumbnail: string
+  rating: number
 }
 
 interface FetchProductsResult {

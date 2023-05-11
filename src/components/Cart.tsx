@@ -50,8 +50,15 @@ export function Cart() {
         </ul>
 
         <button onClick={clearCart}>
-          <ClearCartIcon />
+          <>
+            <ClearCartIcon />
+            <p>Clear Cart</p>
+          </>
         </button>
+
+        <div>
+          Total: ${cart.reduce((acc, product) => acc + (product.price * (product.quantity ?? 1)), 0)}
+        </div>
       </aside>
     </>
   )
